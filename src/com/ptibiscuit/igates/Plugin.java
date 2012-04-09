@@ -42,6 +42,7 @@ public class Plugin extends JavaPluginEnhancer implements Listener {
 	public void onConfigurationDefault(FileConfiguration c) {
 		c.set("portals", new HashMap<String, Object>());
 		c.set("config.retain_liquid", false);
+		c.set("config.display_message_selection", true);
 	}
 
 	@Override
@@ -54,7 +55,7 @@ public class Plugin extends JavaPluginEnhancer implements Listener {
 		
 		this.data = new YamlData();
 		// On fait attention à Multiverse, au cas où.
-		if (this.multiVerseExists())
+		if (!this.multiVerseExists())
 			data.loadPortals();
 		this.myLog.addInFrame(data.getPortals().size() + " portals loaded !");
 		

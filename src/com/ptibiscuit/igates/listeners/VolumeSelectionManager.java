@@ -1,5 +1,6 @@
 package com.ptibiscuit.igates.listeners;
 
+import com.ptibiscuit.framework.PermissionHelper;
 import com.ptibiscuit.igates.Plugin;
 import com.ptibiscuit.igates.data.Volume;
 import java.util.HashMap;
@@ -18,7 +19,8 @@ public class VolumeSelectionManager implements Listener {
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onPlayerInteract(PlayerInteractEvent e)
 	{
-		if (e.getItem() != null && e.getItem().getType() == selectionTools && e.getClickedBlock() != null)
+		if (e.getItem() != null && e.getItem().getType() == selectionTools && e.getClickedBlock() != null
+				  && PermissionHelper.has(e.getPlayer(), "igates.make_selection", true))
 		{
 			Volume v = this.selections.get(e.getPlayer().getName());
 			if (v == null)
@@ -30,12 +32,14 @@ public class VolumeSelectionManager implements Listener {
 			if (e.getAction() == Action.RIGHT_CLICK_BLOCK)
 			{
 				v.setEnd(l);
-				Plugin.instance.sendPreMessage(e.getPlayer(), "second_point_set");
+				if (Plugin.instance.getConfig().getBoolean("config.display_message_selection", true))
+					Plugin.instance.sendPreMessage(e.getPlayer(), "second_point_set");
 			}
 			else if (e.getAction() == Action.LEFT_CLICK_BLOCK)
 			{
 				v.setFirst(l);
-				Plugin.instance.sendPreMessage(e.getPlayer(), "first_point_set");
+				if (Plugin.instance.getConfig().getBoolean("config.display_message_selection", true))
+					Plugin.instance.sendPreMessage(e.getPlayer(), "first_point_set");
 			}
 		}
 	}
@@ -43,8 +47,6 @@ public class VolumeSelectionManager implements Listener {
 	public Volume getSelection(String player)
 	{
 		Volume v = this.selections.get(player);
-		if (v != null)
-			System.out.println(v + " " + v.getFirst() + " " + v.getEnd());
 		if (v != null && v.getFirst() != null && v.getEnd() != null)
 			return v;
 		return null;
