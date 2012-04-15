@@ -2,6 +2,7 @@ name: iGates
 main: com.ptibiscuit.igates.Plugin
 version: 0.2
 website:
+loadbefore: [PluginsBaker]
 authors:
 - Ptibiscuit
 commands:
