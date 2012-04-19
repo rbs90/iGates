@@ -10,6 +10,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockFromToEvent;
+import org.bukkit.event.block.BlockPhysicsEvent;
 
 /**
  *
@@ -28,6 +29,19 @@ public class SpreadBlockListener implements Listener {
 					e.setCancelled(true);
 					return;
 				}
+			}
+		}
+	}
+	
+	@EventHandler(priority = EventPriority.NORMAL)
+	public void onBlockPhysics(BlockPhysicsEvent e)
+	{
+		for (Portal p : Plugin.instance.getData().getPortals())
+		{
+			if (p.isIn(e.getBlock().getLocation()))
+			{
+				e.setCancelled(true);
+				return;
 			}
 		}
 	}

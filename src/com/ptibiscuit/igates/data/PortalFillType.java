@@ -5,6 +5,7 @@
 package com.ptibiscuit.igates.data;
 
 import java.util.ArrayList;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -26,7 +27,7 @@ public class PortalFillType extends FillType {
 		{
 			if (l.getBlock().getType() == Material.AIR)
 			{
-				l.getBlock().setType(Material.IRON_BLOCK);
+				l.getBlock().setType(Material.GLOWSTONE);
 				changed.add(l);
 			}
 		}
