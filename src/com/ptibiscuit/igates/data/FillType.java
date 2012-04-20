@@ -24,7 +24,7 @@ public class FillType {
 	{
 		for (Location  l : blocks)
 		{
-			if (this.isAType(l.getBlock().getTypeId()))
+			if (l.getBlock() != null && this.isAType(l.getBlock().getTypeId()))
 				l.getBlock().setType(Material.AIR);
 		}
 	}
