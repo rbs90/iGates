@@ -25,7 +25,7 @@ public class PortalFillType extends FillType {
 		ArrayList<Location> changed = new ArrayList<Location>();
 		for (Location l : blocks)
 		{
-			if (l.getBlock().getType() == Material.AIR)
+			if (l.getBlock() != null && l.getBlock().getType() == Material.AIR)
 			{
 				l.getBlock().setType(Material.GLOWSTONE);
 				changed.add(l);
