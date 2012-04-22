@@ -20,7 +20,7 @@ public class VolumeSelectionManager implements Listener {
 	public void onPlayerInteract(PlayerInteractEvent e)
 	{
 		if (e.getItem() != null && e.getItem().getType() == selectionTools && e.getClickedBlock() != null
-				  && PermissionHelper.has(e.getPlayer(), "igates.make_selection", true))
+				  && Plugin.instance.getPermissionHandler().has(e.getPlayer(), "make_selection", true))
 		{
 			Volume v = this.selections.get(e.getPlayer().getName());
 			if (v == null)

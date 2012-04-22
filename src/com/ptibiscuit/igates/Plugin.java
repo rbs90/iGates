@@ -47,7 +47,7 @@ public class Plugin extends JavaPluginEnhancer implements Listener {
 
 	@Override
 	public void onEnable() {
-		this.setup("iGates", ChatColor.AQUA + "[iGates]", "igates.", true);
+		this.setup(ChatColor.AQUA + "[iGates]", "igates", true);
 		this.instance = this;
 		this.myLog.startFrame();
 		this.myLog.addInFrame("iGates by Ptibiscuit");
@@ -108,7 +108,7 @@ public class Plugin extends JavaPluginEnhancer implements Listener {
 			
 			if (label.equalsIgnoreCase("igcreate"))
 			{
-				if (!PermissionHelper.has(sender, "igates.portal.edit.create", true))
+				if (!this.permissionHandler.has(sender, "portal.edit.create", true))
 				{
 					this.sendPreMessage(sender, "cant_do");
 					return true;
@@ -134,7 +134,7 @@ public class Plugin extends JavaPluginEnhancer implements Listener {
 			}
 			else if (label.equalsIgnoreCase("igset"))
 			{
-				if (!PermissionHelper.has(sender, "igates.portal.edit.set." + args[0], true))
+				if (!this.permissionHandler.has(sender, "portal.edit.set." + args[0], true))
 				{
 					this.sendPreMessage(sender, "cant_do");
 					return true;
@@ -177,7 +177,7 @@ public class Plugin extends JavaPluginEnhancer implements Listener {
 			}
 			else if (label.equalsIgnoreCase("igdelete"))
 			{
-				if (!PermissionHelper.has(sender, "igates.portal.edit.delete", true))
+				if (!this.permissionHandler.has(sender, "portal.edit.delete", true))
 				{
 					this.sendPreMessage(sender, "cant_do");
 					return true;
@@ -196,7 +196,7 @@ public class Plugin extends JavaPluginEnhancer implements Listener {
 			}
 			else if (label.equalsIgnoreCase("iglist"))
 			{
-				if (!PermissionHelper.has(sender, "igates.portal.list", false))
+				if (!this.permissionHandler.has(sender, "portal.list", false))
 				{
 					this.sendPreMessage(sender, "cant_do");
 					return true;
@@ -213,7 +213,7 @@ public class Plugin extends JavaPluginEnhancer implements Listener {
 			}
 			else if (label.equalsIgnoreCase("igaddfrom"))
 			{
-				if (!PermissionHelper.has(sender, "igates.portal.edit.addfrom", true))
+				if (!this.permissionHandler.has(sender, "portal.edit.addfrom", true))
 				{
 					this.sendPreMessage(sender, "cant_do");
 					return true;
@@ -240,7 +240,7 @@ public class Plugin extends JavaPluginEnhancer implements Listener {
 			}
 			else if (label.equalsIgnoreCase("igclearfroms"))
 			{
-				if (!PermissionHelper.has(sender, "igates.portal.edit.clearfroms", true))
+				if (!this.permissionHandler.has(sender, "portal.edit.clearfroms", true))
 				{
 					this.sendPreMessage(sender, "cant_do");
 					return true;

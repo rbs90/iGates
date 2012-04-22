@@ -18,15 +18,16 @@ public class PlayerListener implements Listener {
 	public void onPlayerMove(PlayerMoveEvent e) {
 		if (e.isCancelled()) { return; }
 		Player p = e.getPlayer();
-		if (!PermissionHelper.has(e.getPlayer(), "igates.portal.use", true))
-		{
-			Plugin.instance.sendPreMessage(e.getPlayer(), "cant_do");
-			return;
-		}
+		
 		Portal portal = Plugin.instance.getPortalByPosition(p.getLocation());
 		if (portal != null)
 		{
 			// Il se trouve effectivement dans un portal !
+			if (!Plugin.instance.getPermissionHandler().has(e.getPlayer(), "portal.use", true))
+			{
+				Plugin.instance.sendPreMessage(e.getPlayer(), "cant_do");
+				return;
+			}
 			portal.teleportPlayer(p);
 		}
 	}
