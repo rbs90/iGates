@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.ptibiscuit.igates;
 
 import com.ptibiscuit.framework.JavaPluginEnhancer;
@@ -79,6 +75,7 @@ public class Plugin extends JavaPluginEnhancer implements Listener {
 		p.setProperty("tag_dont_exist", "This portal's tag doesn't exist.");
 		p.setProperty("set_active", "This portal has been turned {ACTIVE}.");
 		p.setProperty("set_filltype", "This portal's filltype is now {FILLTYPE}.");
+		p.setProperty("set_to", "The new \"to\" point of the portal is set.");
 		p.setProperty("portal_deleted", "Portal deleted. :'(");
 		p.setProperty("first_point_set", "The first point of your selection is set !");
 		p.setProperty("second_point_set", "The second point of your selection is set !");
@@ -156,6 +153,7 @@ public class Plugin extends JavaPluginEnhancer implements Listener {
 				else if (args[0].equalsIgnoreCase("to"))
 				{
 					this.data.setSpawn(portal, p.getLocation());
+					this.sendMessage(sender, this.getSentence("set_to"));
 				}
 				else if (args[0].equalsIgnoreCase("filltype"))
 				{
