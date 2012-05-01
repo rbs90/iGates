@@ -71,7 +71,7 @@ public class Plugin extends JavaPluginEnhancer implements Listener {
 		p.setProperty("need_be_player", "You need to be a player to do that.");
 		p.setProperty("more_args", "Bad using of the command (Need argument ?).");
 		p.setProperty("tag_taken", "This portal's tag ios already taken.");
-		p.setProperty("ft_dont_exist", "This FillType doesn't exist (water, portal, lava, web)");
+		p.setProperty("ft_dont_exist", "This FillType doesn't exist (water, portal, end_portal, lava, web)");
 		p.setProperty("tag_dont_exist", "This portal's tag doesn't exist.");
 		p.setProperty("set_active", "This portal has been turned {ACTIVE}.");
 		p.setProperty("set_filltype", "This portal's filltype is now {FILLTYPE}.");

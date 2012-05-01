@@ -16,8 +16,8 @@ import org.bukkit.block.Block;
  */
 public class PortalFillType extends FillType {
 
-	public PortalFillType(String name) {
-		super(name, new int[]{90});
+	public PortalFillType(String name, int[] ids) {
+		super(name, ids);
 	}
 
 	@Override
@@ -34,7 +34,7 @@ public class PortalFillType extends FillType {
 		
 		for (Location b : changed)
 		{
-			b.getBlock().setType(Material.PORTAL);
+			b.getBlock().setTypeId(this.materials[0]);
 		}
 	}
 	

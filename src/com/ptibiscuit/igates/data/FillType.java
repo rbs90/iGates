@@ -5,8 +5,8 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 
 public class FillType {
-	private String name;
-	private int[] materials;
+	protected String name;
+	protected int[] materials;
 
 	public FillType(String name, int[] materials) {
 		this.name = name;
@@ -55,7 +55,8 @@ public class FillType {
 		fillTypes.add(new FillType("WATER", new int[]{8, 9}));
 		fillTypes.add(new FillType("LAVA", new int[]{10, 11}));
 		fillTypes.add(new FillType("WEB", new int[]{30}));
-		fillTypes.add(new PortalFillType("PORTAL"));
+		fillTypes.add(new PortalFillType("PORTAL", new int[]{90}));
+		fillTypes.add(new PortalFillType("END_PORTAL", new int[]{119}));
 	}
 	
 	public static FillType getFillType(String tag)
