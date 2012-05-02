@@ -1,7 +1,6 @@
 package com.ptibiscuit.igates;
 
 import com.ptibiscuit.framework.JavaPluginEnhancer;
-import com.ptibiscuit.framework.PermissionHelper;
 import com.ptibiscuit.igates.data.FillType;
 import com.ptibiscuit.igates.data.Portal;
 import com.ptibiscuit.igates.data.Volume;
@@ -13,6 +12,7 @@ import com.ptibiscuit.igates.listeners.VolumeSelectionManager;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Properties;
+import net.milkbowl.vault.economy.Economy;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.command.Command;
@@ -24,6 +24,7 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.server.PluginEnableEvent;
 import org.bukkit.plugin.PluginManager;
+import org.bukkit.plugin.RegisteredServiceProvider;
 
 public class Plugin extends JavaPluginEnhancer implements Listener {
 	public static Plugin instance;
@@ -32,6 +33,7 @@ public class Plugin extends JavaPluginEnhancer implements Listener {
 	private VolumeSelectionManager vsm = new VolumeSelectionManager();
 	private SpreadBlockListener sbl = new SpreadBlockListener();
 	private PlayerListener pm = new PlayerListener();
+	private Economy economy;
 	
 	
 	@Override
@@ -54,8 +56,11 @@ public class Plugin extends JavaPluginEnhancer implements Listener {
 		if (!this.multiVerseExists())
 			data.loadPortals();
 		this.myLog.addInFrame(data.getPortals().size() + " portals loaded !");
-		
-		
+		// Enable Economic support
+		if (this.setupEconomy())
+			this.myLog.addInFrame("Economy enabled !", true);
+		else
+			this.myLog.addInFrame("Can't enable Economy. It wasn't necessary, but it's sad ... :'(", false);
 		PluginManager pgm = this.getServer().getPluginManager();
 		pgm.registerEvents(vsm, this);
 		pgm.registerEvents(pm, this);
@@ -92,6 +97,26 @@ public class Plugin extends JavaPluginEnhancer implements Listener {
 		
 	}
 
+	public boolean setupEconomy()
+	{
+		RegisteredServiceProvider<Economy> rsp = getServer().getServicesManager().getRegistration(Economy.class);
+		if (rsp == null) {
+			return false;
+		}
+		this.economy = rsp.getProvider();
+		return economy != null;
+	}
+	
+	public Economy getEconomy()
+	{
+		return this.economy;
+	}
+	
+	public boolean isEconomyEnabled()
+	{
+		return this.economy != null;
+	}
+	
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 		try
