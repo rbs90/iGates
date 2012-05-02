@@ -18,9 +18,10 @@ public class Portal {
 	private Location toPoint;
 	private ArrayList<Volume> fromPoints;
 	private FillType fillType;
+	private int price;
 	private boolean active;
 
-	public Portal(String tag, Location toPoint, ArrayList<Volume> fromPoints, FillType fillType, boolean active) {
+	public Portal(String tag, Location toPoint, ArrayList<Volume> fromPoints, int price, FillType fillType, boolean active) {
 		this.tag = tag;
 		this.toPoint = toPoint;
 		this.fromPoints = fromPoints;
@@ -32,6 +33,11 @@ public class Portal {
 		return fillType;
 	}
 
+	public int getPrice()
+	{
+		return price;
+	}
+	
 	public ArrayList<Volume> getFromPoints() {
 		return fromPoints;
 	}
