@@ -4,7 +4,6 @@
  */
 package com.ptibiscuit.igates.listeners;
 
-import com.ptibiscuit.framework.PermissionHelper;
 import com.ptibiscuit.igates.Plugin;
 import com.ptibiscuit.igates.data.Portal;
 import org.bukkit.entity.Player;

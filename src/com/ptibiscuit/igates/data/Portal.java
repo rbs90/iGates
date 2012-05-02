@@ -4,7 +4,9 @@
  */
 package com.ptibiscuit.igates.data;
 
+import com.ptibiscuit.igates.Plugin;
 import java.util.ArrayList;
+import net.milkbowl.vault.economy.Economy;
 import org.bukkit.Chunk;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
@@ -24,6 +26,7 @@ public class Portal {
 	public Portal(String tag, Location toPoint, ArrayList<Volume> fromPoints, int price, FillType fillType, boolean active) {
 		this.tag = tag;
 		this.toPoint = toPoint;
+		this.price = price;
 		this.fromPoints = fromPoints;
 		this.fillType = fillType;
 		this.active = active;
@@ -52,6 +55,22 @@ public class Portal {
 	
 	public void teleportPlayer(Player p)
 	{
+		// We check for the price
+		Plugin plug = Plugin.instance;
+		if (plug.isEconomyEnabled())
+		{
+			Economy econ = Plugin.instance.getEconomy();
+			double actualMoneyOfPlayer = econ.getBalance(p.getName());
+			String formatPrice = econ.format(this.price);
+			if (this.price != 0 && actualMoneyOfPlayer >= this.price) {
+				plug.sendMessage(p, plug.getSentence("pay_the_price").replace("{PRICE}", formatPrice));
+				econ.withdrawPlayer(p.getName(), this.price);
+			} else {
+				// Il n'a pas assez d'argent
+				plug.sendMessage(p, plug.getSentence("cant_afford").replace("{PRICE}", formatPrice));
+				return;
+			}
+		}
 		Location l = this.toPoint;
 		Chunk c = this.toPoint.getChunk();
 		if (!l.getWorld().isChunkLoaded(c))

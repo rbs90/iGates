@@ -90,6 +90,8 @@ public class Plugin extends JavaPluginEnhancer implements Listener {
 		p.setProperty("elem_list", "{ACTIVE} " + ChatColor.GOLD + "{TAG}" + ChatColor.WHITE + ": {CNT_FROMS} \"Froms\" areas.");
 		p.setProperty("portail_created", "Portal \"{TAG}\" created !");
 		p.setProperty("weird_arg", "You used weird arg, only on, off, to and filltype are available.");
+		p.setProperty("cant_afford", "You don't have enough money to take this portal. It costs {PRICE}.");
+		p.setProperty("pay_the_price", "You have paid {PRICE} to take this portal.");
 	}
 
 	@Override
