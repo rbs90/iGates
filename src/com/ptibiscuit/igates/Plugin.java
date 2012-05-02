@@ -92,6 +92,7 @@ public class Plugin extends JavaPluginEnhancer implements Listener {
 		p.setProperty("weird_arg", "You used weird arg, only on, off, to and filltype are available.");
 		p.setProperty("cant_afford", "You don't have enough money to take this portal. It costs {PRICE}.");
 		p.setProperty("pay_the_price", "You have paid {PRICE} to take this portal.");
+		p.setProperty("set_price", "The new price of the portal is set !");
 	}
 
 	@Override
@@ -176,6 +177,12 @@ public class Plugin extends JavaPluginEnhancer implements Listener {
 					boolean active = (args[0].equalsIgnoreCase("on")) ? true : false; 
 					this.data.setActive(portal, active);
 					this.sendMessage(sender, this.getSentence("set_active").replace("{ACTIVE}", args[0]));
+				}
+				else if (args[0].equalsIgnoreCase("price"))
+				{
+					int price = new Integer(args[2]);
+					this.data.setPrice(portal, price);
+					this.sendPreMessage(sender, "set_price");
 				}
 				else if (args[0].equalsIgnoreCase("to"))
 				{
