@@ -2,6 +2,7 @@ name: iGates
 main: com.ptibiscuit.igates.Plugin
 version: 0.3
 depend: [PluginsBaker]
+softdepend: [Multiverse-Core]
 authors:
 - Ptibiscuit
 commands:

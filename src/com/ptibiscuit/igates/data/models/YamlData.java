@@ -24,6 +24,7 @@ public class YamlData implements IData {
 	@Override
 	public Portal createPortal(String tag, Location to, ArrayList<Volume> froms, FillType fillType) {
 		Portal portal = new Portal(tag, to, froms, 0, fillType, false);
+		System.out.println("DEBUG: " + config + " | " + portal);
 		config.set("portals." + portal.getTag() + ".enable", false);
 		config.set("portals." + portal.getTag() + ".to", this.convertLocationToString(to));
 		config.set("portals." + portal.getTag() + ".yaw", to.getYaw());
@@ -38,6 +39,7 @@ public class YamlData implements IData {
 	@Override
 	public void loadPortals() {
 		config = Plugin.instance.getConfig();
+		System.out.println("DEBUG: " + config);
 		if (config.getConfigurationSection("portals") != null)
 		{
 			for (Entry<String, Object> entry : config.getConfigurationSection("portals").getValues(false).entrySet())

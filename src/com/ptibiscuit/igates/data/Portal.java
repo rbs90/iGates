@@ -53,22 +53,22 @@ public class Portal {
 		return active;
 	}
 	
-	public void teleportPlayer(Player p)
+	public boolean teleportPlayer(Player p)
 	{
 		// We check for the price
 		Plugin plug = Plugin.instance;
-		if (plug.isEconomyEnabled())
+		if (plug.isEconomyEnabled() && this.price != 0 && !plug.getPermissionHandler().has(p, "god", true))
 		{
 			Economy econ = Plugin.instance.getEconomy();
 			double actualMoneyOfPlayer = econ.getBalance(p.getName());
 			String formatPrice = econ.format(this.price);
-			if (this.price != 0 && actualMoneyOfPlayer >= this.price) {
+			if (actualMoneyOfPlayer >= this.price) {
 				plug.sendMessage(p, plug.getSentence("pay_the_price").replace("{PRICE}", formatPrice));
 				econ.withdrawPlayer(p.getName(), this.price);
 			} else {
 				// Il n'a pas assez d'argent
 				plug.sendMessage(p, plug.getSentence("cant_afford").replace("{PRICE}", formatPrice));
-				return;
+				return false;
 			}
 		}
 		Location l = this.toPoint;
@@ -78,6 +78,7 @@ public class Portal {
 			l.getWorld().loadChunk(c);
 		}
 		p.teleport(l);
+		return true;
 	}
 	
 	public boolean isIn(Location l)

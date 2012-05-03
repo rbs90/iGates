@@ -53,8 +53,7 @@ public class Plugin extends JavaPluginEnhancer implements Listener {
 		
 		this.data = new YamlData();
 		// On fait attention à Multiverse, au cas où.
-		if (!this.multiVerseExists())
-			data.loadPortals();
+		data.loadPortals();
 		this.myLog.addInFrame(data.getPortals().size() + " portals loaded !");
 		// Enable Economic support
 		if (this.setupEconomy())

@@ -28,7 +28,7 @@ public class PlayerListener implements Listener {
 					Plugin.instance.sendPreMessage(e.getPlayer(), "cant_do");
 					return;
 				}
-				portal.teleportPlayer(p);
+				e.setCancelled(!portal.teleportPlayer(p));
 			}
 		}
 	}
