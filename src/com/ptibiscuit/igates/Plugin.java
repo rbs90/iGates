@@ -315,21 +315,4 @@ public class Plugin extends JavaPluginEnhancer implements Listener {
 	public IData getData() {
 		return data;
 	}
-	
-	/*
-	 * All the thing about the MultiVerse thing.
-	 */
-	@EventHandler(priority = EventPriority.MONITOR)
-	public void onPluginEnable(PluginEnableEvent e)
-	{
-		if (e.getPlugin().getName().equalsIgnoreCase("Multiverse-Core"))
-			this.data.loadPortals();
-	}
-	
-	public boolean multiVerseExists()
-	{
-		if (this.getServer().getPluginManager().getPlugin("Multiverse-Core") != null)
-			return true;
-		return false;
-	}
 }
