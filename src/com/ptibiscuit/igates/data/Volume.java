@@ -1,7 +1,6 @@
 package com.ptibiscuit.igates.data;
 
 import java.util.ArrayList;
-
 import org.bukkit.Location;
 
 public class Volume {
@@ -38,6 +37,16 @@ public class Volume {
 	
 	public boolean isIn(Location l)
 	{
+		/*
+		int maxx = (first.getBlockX() > end.getBlockX()) ? first.getBlockX() : end.getBlockX();
+		int minx = (first.getBlockX() < end.getBlockX()) ? first.getBlockX() : end.getBlockX();
+		int maxy = (first.getBlockY() > end.getBlockY()) ? first.getBlockY() : end.getBlockY();
+		int miny = (first.getBlockY() < end.getBlockY()) ? first.getBlockY() : end.getBlockY();
+		int maxz = (first.getBlockZ() > end.getBlockZ()) ? first.getBlockZ() : end.getBlockZ();
+		int minz = (first.getBlockZ() < end.getBlockZ()) ? first.getBlockZ() : end.getBlockZ();
+		if ((l.getX() > minx && l.getX() < maxx + 1) && (l.getY() > miny && l.getY() < maxy + 1) && (l.getZ() > minz && l.getZ() < maxz + 1))
+			return true;
+		*/
 		for (Location lC : getBlocks())
 		{
 			if (l.getWorld() == lC.getWorld() && l.getBlockX() == lC.getBlockX() && lC.getBlockY() == l.getBlockY() && lC.getBlockZ() == l.getBlockZ())
