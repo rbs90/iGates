@@ -68,7 +68,7 @@ public class Portal {
 			} else {
 				// Il n'a pas assez d'argent
 				plug.sendMessage(p, plug.getSentence("cant_afford").replace("{PRICE}", formatPrice));
-				return true;
+				return false;
 			}
 		}
 		Location l = this.toPoint;

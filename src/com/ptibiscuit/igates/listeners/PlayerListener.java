@@ -12,6 +12,9 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
+import org.bukkit.event.player.PlayerPortalEvent;
+import org.bukkit.event.player.PlayerTeleportEvent;
+import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
 
 public class PlayerListener implements Listener {
 	@EventHandler(priority = EventPriority.HIGHEST)
@@ -21,20 +24,32 @@ public class PlayerListener implements Listener {
 		Plugin plug = Plugin.instance;
 		if (!e.getFrom().getBlock().getLocation().equals(e.getTo().getBlock().getLocation()))
 		{
-			Portal portal = plug.getPortalByPosition(p.getLocation());
+			Portal portal = plug.getPortalByPosition(e.getTo());
 			if (portal != null)
 			{
 				// Il se trouve effectivement dans un portal !
 				PermissionHandler perm = plug.getPermissionHandler();
 				// Soit il possède la permission use, soit il possède la permissions spéciale. =)
-				if (perm.has(e.getPlayer(), "portal.use", false) || perm.has(e.getPlayer(), "portal.use." + portal.getFillType().getName(), false))
+				if (perm.has(e.getPlayer(), "portal.use", false) || perm.has(e.getPlayer(), "portal.use." + portal.getFillType().getName().toLowerCase(), false))
 				{
 					e.setCancelled(!portal.teleportPlayer(p));
 				} else {
 					Plugin.instance.sendPreMessage(e.getPlayer(), "cant_do");
+					e.setCancelled(true);
 					return;
 				}
 				
+			}
+		}
+	}
+	
+	// This is for disallowing people to use end-portal and nether-portal to go to these land.
+	@EventHandler(priority=EventPriority.NORMAL)
+	public void onPlayerUsePortal(PlayerPortalEvent e) {
+		if (e.getCause() == TeleportCause.END_PORTAL || e.getCause() == TeleportCause.NETHER_PORTAL) {
+			Portal p = Plugin.instance.getPortalByPosition(e.getFrom());
+			if (p != null) {
+				e.setCancelled(true);
 			}
 		}
 	}
