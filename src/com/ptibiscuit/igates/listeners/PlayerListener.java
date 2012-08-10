@@ -47,7 +47,7 @@ public class PlayerListener implements Listener {
 	@EventHandler(priority=EventPriority.NORMAL)
 	public void onPlayerUsePortal(PlayerPortalEvent e) {
 		if (e.getCause() == TeleportCause.END_PORTAL || e.getCause() == TeleportCause.NETHER_PORTAL) {
-			Portal p = Plugin.instance.getPortalByPosition(e.getFrom());
+			Portal p = Plugin.instance.getPortalByPosition(e.getFrom(), 0.7);
 			if (p != null) {
 				e.setCancelled(true);
 			}

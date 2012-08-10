@@ -81,14 +81,18 @@ public class Portal {
 		return true;
 	}
 	
-	public boolean isIn(Location l)
+	public boolean isIn(Location l, double offset)
 	{
 		for (Volume v : this.fromPoints)
 		{
-			if (v.isIn(l))
+			if (v.isIn(l, offset))
 				return true;
 		}
 		return false;
+	}
+	
+	public boolean isIn(Location l) {
+		return this.isIn(l, 0);
 	}
 	
 	public void setActive(boolean active) {

@@ -289,14 +289,18 @@ public class Plugin extends JavaPluginEnhancer implements Listener {
 		return true;
 	}
 	
-	public Portal getPortalByPosition(Location l)
+	public Portal getPortalByPosition(Location l, double offset)
 	{
 		for (Portal p : this.data.getPortals())
 		{
-			if (p.isIn(l) && p.isActive())
+			if (p.isIn(l, offset) && p.isActive())
 				return p;
 		}
 		return null;
+	}
+	
+	public Portal getPortalByPosition(Location l) {
+		return this.getPortalByPosition(l, 0);
 	}
 	
 	public Portal getPortal(String tag)
