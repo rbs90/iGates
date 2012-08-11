@@ -1,6 +1,6 @@
 name: iGates
 main: com.ptibiscuit.igates.Plugin
-version: 0.6
+version: 0.6.1
 depend: [PluginsBaker]
 softdepend: [Multiverse-Core]
 authors:
