@@ -44,7 +44,7 @@ public class Volume {
 		double miny = ((first.getBlockY() < end.getBlockY()) ? first.getBlockY() : end.getBlockY()) - offset;
 		double maxz = ((first.getBlockZ() > end.getBlockZ()) ? first.getBlockZ() : end.getBlockZ()) + offset;
 		double minz = ((first.getBlockZ() < end.getBlockZ()) ? first.getBlockZ() : end.getBlockZ()) - offset;
-		if ((l.getX() > minx && l.getX() < maxx + 1) && (l.getY() > miny && l.getY() < maxy + 1) && (l.getZ() > minz && l.getZ() < maxz + 1))
+		if ((l.getX() >= minx && l.getX() < maxx + 1) && (l.getY() >= miny && l.getY() < maxy + 1) && (l.getZ() >= minz && l.getZ() < maxz + 1))
 			return true;
 		
 		/*for (Location lC : getBlocks())
