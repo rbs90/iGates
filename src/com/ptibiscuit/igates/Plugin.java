@@ -198,6 +198,16 @@ public class Plugin extends JavaPluginEnhancer implements Listener {
 						this.sendPreMessage(sender, "ft_dont_exist");
 					}
 				}
+                else if (args[0].equalsIgnoreCase("command"))
+                {
+                    String commandString = "";
+                    for (int i = 2; i < args.length; i++) {
+                        commandString = commandString + " " + args[i];
+                    }
+                    commandString = commandString.trim();
+                    this.data.setCommand(portal, commandString);
+                    this.sendMessage(sender, "Successfully set command \"" + commandString + "\" to portal");
+                }
 				else
 				{
 					this.sendPreMessage(sender, "weird_arg");

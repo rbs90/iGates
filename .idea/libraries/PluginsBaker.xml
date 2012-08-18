@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="PluginsBaker">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/PluginsBaker.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

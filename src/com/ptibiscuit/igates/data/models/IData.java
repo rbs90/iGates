@@ -14,6 +14,7 @@ public interface IData {
 	public void setActive(Portal portal, boolean active);
 	public void setSpawn(Portal portal, Location l);
 	public void setPrice(Portal p, int price);
+    public void setCommand(Portal p, String command);
 	public void setFillType(Portal portal, FillType filltype);
 	public void setFromsAreas(Portal portal, ArrayList<Volume> froms);
 }

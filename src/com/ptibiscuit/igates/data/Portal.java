@@ -22,9 +22,11 @@ public class Portal {
 	private FillType fillType;
 	private int price;
 	private boolean active;
+    private String command;
 
-	public Portal(String tag, Location toPoint, ArrayList<Volume> fromPoints, int price, FillType fillType, boolean active) {
+	public Portal(String tag, Location toPoint, ArrayList<Volume> fromPoints, int price, FillType fillType, boolean active, String command) {
 		this.tag = tag;
+        this.command = command;
 		this.toPoint = toPoint;
 		this.price = price;
 		this.fromPoints = fromPoints;
@@ -71,13 +73,21 @@ public class Portal {
 				return false;
 			}
 		}
-		Location l = this.toPoint;
-		Chunk c = this.toPoint.getChunk();
-		if (!l.getWorld().isChunkLoaded(c))
-		{
-			l.getWorld().loadChunk(c);
-		}
-		p.teleport(l);
+        //first look if there is an command:
+        if(this.command == null){
+            Location l = this.toPoint;
+            Chunk c = this.toPoint.getChunk();
+            if (!l.getWorld().isChunkLoaded(c))
+            {
+                l.getWorld().loadChunk(c);
+            }
+            p.teleport(l);
+        }
+        else {
+            //System.out.println("trying to execute: " + command);
+            p.performCommand(command);
+        }
+
 		return true;
 	}
 	
@@ -139,5 +149,11 @@ public class Portal {
 
 	public void setToPoint(Location toPoint) {
 		this.toPoint = toPoint;
+        this.command = null;
 	}
+
+    public void setCommand(String command){
+        this.toPoint = null;
+        this.command = command;
+    }
 }
